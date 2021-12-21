@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import React, { useState } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { add_new_page } from '../redux/actions/formFiledsActions';
@@ -9,6 +9,8 @@ import "./Navigation.css";
 function Navigation({ addNewPage, preview, handleUploadOpen, otherPage }) {
   const [formId, setFormId] = useState(uuidv4);
   console.log(`page detail`, otherPage);
+
+  const { fields } = useSelector(state => state.formFields);
 
   const dispatch = useDispatch();
 
@@ -20,8 +22,9 @@ function Navigation({ addNewPage, preview, handleUploadOpen, otherPage }) {
 
   const { id } = useParams();
 
+
   const fromPublish = () => {
-    axios.post(`http://localhost:7000/form_publish/${id}`, { name: "Rakib", age: '22' }, config)
+    axios.post(`http://localhost:7000/form_publish/${id}`, fields, config)
       .then(res => console.log(res.data))
       .catch(err => console.log(err))
     console.log('it\'s working!')
