@@ -7,11 +7,11 @@ import { v4 as uuidv4 } from "uuid";
 import { add_new_page } from '../redux/actions/formFiledsActions';
 import "./Navigation.css";
 function Navigation({ addNewPage, preview, handleUploadOpen, otherPage }) {
+
   const [formId, setFormId] = useState(uuidv4);
-  console.log(`page detail`, otherPage);
+  const [shareLink, setShareLink] = useState('');
 
   const { fields } = useSelector(state => state.formFields);
-
   const dispatch = useDispatch();
 
   const config = {
@@ -22,13 +22,17 @@ function Navigation({ addNewPage, preview, handleUploadOpen, otherPage }) {
 
   const { id } = useParams();
 
-
   const fromPublish = () => {
     axios.post(`http://localhost:7000/form_publish/${id}`, fields, config)
-      .then(res => console.log(res.data))
+      .then(res => setShareLink(res.data.form_link))
       .catch(err => console.log(err))
-    console.log('it\'s working!')
   }
+
+  const ShareLink = () => {
+    navigator.clipboard.writeText(shareLink);
+    alert('Text copied');
+  }
+
 
   return (
     <header className="header-area container-fluid">
@@ -68,7 +72,7 @@ function Navigation({ addNewPage, preview, handleUploadOpen, otherPage }) {
                 <span>Publish</span>
               </li>
 
-              <li>
+              <li onClick={ShareLink}>
                 <FontAwesomeIcon icon={["fas", "share-alt"]} />
                 <span>Share</span>
               </li>
