@@ -296,6 +296,7 @@ function Body() {
         {/* Modal for Field Insert */}
         <ModalAdd
           show={show}
+          setShow={setShow}
           onHide={() => setShow(false)}
           handleClose={handleClose}
           modalData={modalData}

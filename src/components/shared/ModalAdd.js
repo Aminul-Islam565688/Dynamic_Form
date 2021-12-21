@@ -5,7 +5,7 @@ import LogicalDemoContent from "./LogicalDemoContent";
 import "./ModalAdd.css";
 
 function ModalAdd(props) {
-  const { show, handleClose, modalData } = props;
+  const { show, handleClose, modalData, setShow } = props;
   const [rigthContent, setRigthContent] = useState();
 
   //After clicking on input field type
@@ -13,6 +13,7 @@ function ModalAdd(props) {
     setRigthContent(
       <LogicalDemoContent
         newFieldData={{ ...modalData, newFieldType: newFieldType }}
+        setShow={setShow}
       />
     );
   };

@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { add_input_fields } from "../../redux/actions/formFiledsActions";
 import "./LogicalDemoContent.css";
 
-function LogicalDemoContent({ newFieldData }) {
+function LogicalDemoContent({ newFieldData, setShow }) {
   let { newFieldType } = newFieldData;
 
   const dispatch = useDispatch();
@@ -41,7 +41,7 @@ function LogicalDemoContent({ newFieldData }) {
           <p>{detail}</p>
         </div>
         <div className="block-right">
-          <Button variant="primary" onClick={() => dispatch(add_input_fields(newFieldData))}>
+          <Button variant="primary" onClick={() => { dispatch(add_input_fields(newFieldData)); setShow(false) }}>
             Insert <FontAwesomeIcon icon={["fas", "arrow-right"]} />
           </Button>
         </div>
