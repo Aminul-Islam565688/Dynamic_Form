@@ -1,0 +1,60 @@
+.upload-modal{}
+.upload-modal .modal-header{}
+.upload-modal .modal-header h2{
+    font-size: 1.5rem;
+    text-transform: capitalize;
+}
+.upload-modal .modal-header svg{
+    color: tomato;
+    font-size: 1.5rem;
+    margin-right: 5px;
+}
+.upload-modal .btn-close {
+    background-color: tomato;
+}
+
+
+/* Upload Image */
+.modal-body-area {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+  }
+  .modal-body-area > div {
+    width: 100%;
+    border-radius: 10px;
+    padding: 10px;
+  }
+  .form-area {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .form-area .img-label svg{
+    cursor: pointer;
+    font-size: 4.5rem;
+    transition: 500ms;
+    color: rgb(28, 29, 32);
+  }
+
+  #uploadNow{
+      display: none;
+  }
+  .form-area .img-label:hover svg{
+    
+  }
+
+  .form-area input[type='file'] {
+    display: none;
+  }
+  .preview {
+    border: 1px dashed rgba(0, 0, 0.5);
+    padding: 5px;
+  }
+  .preview img {
+    width: 100%;
+  }

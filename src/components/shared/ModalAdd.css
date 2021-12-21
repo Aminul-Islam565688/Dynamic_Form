@@ -1,0 +1,33 @@
+ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.modal-body-area{}
+.ul-area{}
+.ul-area li{
+    transition:500ms;
+    cursor: pointer;
+    padding:10px 5px;
+    border-bottom: 1px dashed aliceblue;
+}
+.ul-area li:hover{
+    background-color: aliceblue;
+}
+
+.initial-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+.initial-content svg {
+    font-size: 3rem;
+    color: tomato;
+}
+.initial-content h5{}
+.initial-content p{}
+.example-area{
+    border-left:1px solid rgba(0,0,0,0.5);
+}

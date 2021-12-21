@@ -1,0 +1,23 @@
+.thankyou-area{
+    text-align: center;
+    padding: 100px 0;
+}
+.thankyou-area svg{
+    font-size: 3em;
+    color: tomato;
+}
+.thankyou-area h3{
+    color: rgb(36, 32, 43);
+    font-weight: 700;
+}
+.thankyou-area p {
+    padding: 0;
+    margin: 0;
+}
+.thankyou-area a{
+    margin-top: 30px;
+    transition: 500ms;
+}
+.thankyou-area a:hover{
+    background-color: rgb(18, 16, 22);
+}

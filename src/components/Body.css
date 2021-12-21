@@ -1,0 +1,145 @@
+/* Form Design */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+.form-title {
+  width: 100%;
+  font-size: 28px;
+  font-weight: 700;
+  color: black;
+  margin: 25px 0;
+  border: navajowhite;
+}
+
+.form-input:focus,
+.form-input:focus-visible {
+  border: none;
+  outline: none;
+}
+.single-input-area .action-buttons {
+  transition: 500ms;
+  opacity: 0;
+}
+.single-input-area:hover .action-buttons{
+  opacity: 1;
+}
+.input-area > div {
+  padding: 5px;
+}
+.action-buttons {
+  display: flex;
+  justify-content: flex-end;
+  height: 36px;
+}
+.action-buttons button {
+  display: inline-block;
+  padding: 0.3rem 0.7rem;
+  margin: 1px;
+  transition: 300ms;
+  cursor: pointer;
+  background-color: #efefef;
+}
+
+.action-buttons button:hover {
+  background-color: #dfdfdf;
+}
+
+.page-devider {
+  margin: 30px 0;
+  display: flex;
+  justify-content: space-between;
+  margin-left: -15px;
+}
+
+.page-devider Button {
+  opacity: 0;
+  transition: 500ms;
+}
+.page-devider:hover Button {
+  opacity: 1;
+}
+
+.page-devider .horizontal-line-area {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.page-devider .horizontal-line-area div:nth-child(1),
+.page-devider .horizontal-line-area div:nth-child(3) {
+  width: 40%;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.page-devider .horizontal-line-area div:nth-child(2) {
+  width: 20%;
+  background-color: #fff;
+  text-align: center;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  padding: 5px;
+  font-size: 0.75em;
+}
+
+.modal-100w {
+  width: 100%;
+  max-width: none !important;
+  margin: 0;
+  border: none;
+  height: 100vh;
+}
+
+.modal-100w .modal-content {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  border-radius: inherit;
+  box-shadow: none;
+}
+
+.preview-body {
+  overflow-y: scroll;
+}
+/* width */
+.preview-body::-webkit-scrollbar {
+  width: 3px;
+}
+
+/* Track */
+.preview-body::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+.preview-body::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+.preview-body::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.preview-form-title {
+  margin: 20px 0 30px;
+}
+
+.ck.ck-editor__editable_inline {
+  margin: 50px 0;
+}
+.ck.ck-editor__editable:not(.ck-editor__nested-editable).ck-focused {
+  border: none !important;
+  box-shadow: none !important;
+}
+.ck.ck-editor__editable_inline > :last-child {
+  margin-bottom: 0 !important;
+}
+.ck.ck-editor__editable_inline > :first-child {
+  margin-top: 0 !important;
+}

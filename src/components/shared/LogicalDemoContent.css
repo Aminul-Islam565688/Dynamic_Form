@@ -1,0 +1,26 @@
+.logical-content{}
+.logical-content .top-content{
+    display: flex;
+    justify-content: space-between;
+}
+.logical-content .top-content .block-left h5{
+    font-weight: 700;
+}
+.logical-content .top-content .block-left{
+    width:70%;
+}
+.logical-content .top-content button{}
+.logical-content .bottom-content {
+    padding: 30px 0;
+    border-top: 1px solid rgba(0,0,0,0.15);
+    margin-top: 20px;
+}
+
+.logical-content .bottom-content h6{
+    font-weight: 700;
+    color: rgb(48, 48, 48);
+}
+.logical-content .bottom-content small{
+    color: black;
+    font-weight: 700;;
+}
