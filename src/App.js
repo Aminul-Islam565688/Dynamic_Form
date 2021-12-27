@@ -8,21 +8,25 @@ import PrivateRoute from "./components/auth/PrivateRoute/PrivateRoute";
 import Body from './components/Body';
 import DragAndDrop from "./components/DragAndDrop/DragAndDrop";
 import Navigation from "./components/Navigation";
+import SharedLink from "./components/pages/SharedLink/SharedLink";
 
 
 library.add(fab, fas, far);
 
 function App() {
+
   const user = localStorage.getItem('user');
   if (!user) {
     localStorage.setItem('user', JSON.stringify({ accessToken: null }))
   }
+
   return (
     <Routes>
       <Route exact path="/" element={<PrivateRoute> <Navigation otherPage /></PrivateRoute>} />
       <Route path="/form/:id" element={<PrivateRoute> <Body /></PrivateRoute>} />
       <Route path="/drag-and-drop" element={<PrivateRoute><DragAndDrop /></PrivateRoute>} />
-      <Route path="/login" element={<PrivateRoute> <Login /></PrivateRoute>} />
+      <Route path="/f/:id" element={<SharedLink />} />
+      <Route path="/login" element={<Login />} />
     </Routes>
   );
 }

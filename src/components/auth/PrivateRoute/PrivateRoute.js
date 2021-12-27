@@ -11,8 +11,9 @@ const PrivateRoute = ({ children }) => {
         // along to that page after they login, which is a nicer user experience
         // than dropping them off on the home page.
         return <Navigate to="/login" state={{ from: location }} />;
+    } else {
+        return children;
     }
-    return children;
 };
 
 export default PrivateRoute;

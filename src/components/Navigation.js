@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { add_new_page } from '../redux/actions/formFiledsActions';
 import "./Navigation.css";
@@ -24,15 +24,20 @@ function Navigation({ addNewPage, preview, handleUploadOpen, otherPage }) {
 
   const fromPublish = () => {
     axios.post(`http://localhost:7000/form_publish/${id}`, fields, config)
-      .then(res => setShareLink(res.data.form_link))
+      .then(res => {
+        console.log(res.data.form_link);
+        setShareLink(res.data.form_link);
+      })
       .catch(err => console.log(err))
   }
+
 
   const ShareLink = () => {
     navigator.clipboard.writeText(shareLink);
     alert('Text copied');
   }
 
+  let navigate = useNavigate();
 
   return (
     <header className="header-area container-fluid">
@@ -72,7 +77,7 @@ function Navigation({ addNewPage, preview, handleUploadOpen, otherPage }) {
                 <span>Publish</span>
               </li>
 
-              <li onClick={ShareLink}>
+              <li onClick={() => { navigate("/f/123") }}>
                 <FontAwesomeIcon icon={["fas", "share-alt"]} />
                 <span>Share</span>
               </li>
