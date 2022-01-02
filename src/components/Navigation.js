@@ -39,6 +39,8 @@ function Navigation({ addNewPage, preview, handleUploadOpen, otherPage }) {
 
   let navigate = useNavigate();
 
+  // now it's in x-aminulislam-x repository
+
   return (
     <header className="header-area container-fluid">
       <div className="header-left">Automo</div>
