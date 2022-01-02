@@ -1,4 +1,4 @@
-# Dynamic Form Inspired By Tally.so
+# Dynamic Form Inspired By Tally.so [dynamicform.com](https://dynamicform-1cc.netlify.app/)
 
 ## Package Used
 
@@ -9,7 +9,5 @@
 - UUid added (For unique ID generation)
 - AXIOS added (For imgbb photo upload)
 - Beautiful DND (applied for experimental purposase)
-
-[dynamicform.com](https://dynamicform-1cc.netlify.app/)
 
 # Dynamic_Form
