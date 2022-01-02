@@ -77,7 +77,7 @@ function Navigation({ addNewPage, preview, handleUploadOpen, otherPage }) {
                 <span>Publish</span>
               </li>
 
-              <li onClick={() => { navigate("/f/123") }}>
+              <li onClick={ShareLink} >
                 <FontAwesomeIcon icon={["fas", "share-alt"]} />
                 <span>Share</span>
               </li>

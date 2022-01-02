@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import { ADD_INPUT_FIELDS, ADD_NEW_PAGE, DELETE_FIELD_ITEM, DELETE_PAGE, UPDATE_PLACEHOLDER } from "../actions/formFiledsActions";
+import { SHARED_FORM_DATA } from "../actions/sharedLinkActions";
 
 const initialState = {
     fields: [
@@ -84,6 +85,13 @@ const formFiledReducers = (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 fields: oldFieldsInput,
+                totalPage
+            }
+        case SHARED_FORM_DATA:
+            console.log(payload)
+            return {
+                ...state,
+                fields: payload,
                 totalPage
             }
         default: return state;

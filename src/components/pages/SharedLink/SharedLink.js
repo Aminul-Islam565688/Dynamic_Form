@@ -1,7 +1,9 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useState } from 'react';
-import { Button, Container, Form, InputGroup, Modal } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { Button, Container, Form, InputGroup } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { getSharedFromData } from '../../../redux/actions/sharedLinkActions';
 import Thankyou from "../../shared/Thankyou";
 
 
@@ -10,16 +12,28 @@ const SharedLink = () => {
 
     const [formName, setFormName] = useState("ajk tor ekdin k amer ekdin");
 
-
+    const { id } = useParams();
+    const dispatch = useDispatch()
     const { fields } = useSelector(state => state.formFields);
-
     console.log(fields)
+
+    useEffect(() => {
+        dispatch(getSharedFromData(id));
+    }, [id])
+
+    useEffect(() => {
+        preview()
+    }, [fields])
+
+    // console.log(fields)
 
     const [previewData, setPreviewData] = useState([]);
     const [previewFieldData, setPreviewFieldData] = useState();
+    const [previewModal, setPreviewModal] = useState(false);
 
 
     const preview = () => {
+        setPreviewModal(true); //Modal
         let i = -1;
         let currentPage = 1;
         const cloneAndModifyFields = fields
@@ -60,116 +74,100 @@ const SharedLink = () => {
         console.log("##### Form Final Value :: ", oldData);
     };
 
+    const [cover, setCover] = useState("");
+    const [logo, setLogo] = useState("");
 
-
+    const [uploadType, setUploadType] = useState("");
+    const [uploadShow, setUploadShow] = useState(false);
+    const handleUploadClose = () => setUploadShow(false);
+    const handleUploadOpen = (type) => {
+        setUploadShow(true);
+        console.log("Modal", type);
+        setUploadType(type);
+    };
     return (
         <>
-            <Modal
-                show={true}
-                // onHide={() => setPreviewModal(false)}
-                dialogClassName="modal-100w"
-                aria-labelledby="example-custom-modal-styling-title"
-            >
-                {/* {!cover && (
-                    <Modal.Header>
-                        <h2>Preview</h2>{" "}
-                        <Button onClick={() => setPreviewModal(false)}>
-                            <FontAwesomeIcon icon={["fas", "edit"]} /> Back to Edit
-                        </Button>
-                    </Modal.Header>
-                )}
-
-                <ImagePreview
-                    cover={cover}
-                    logo={logo}
-                    handleUploadOpen={handleUploadOpen}
-                    setPreviewModal={setPreviewModal}
-                    prevModal
-                /> */}
-                <Modal.Body className="preview-body">
-                    <Container>
-                        <div className="col-lg-8 mx-auto poreview-form-holder">
-                            {previewData && (
-                                <div
-                                    className="preview-form-title"
-                                    dangerouslySetInnerHTML={{ __html: formName }}
-                                ></div>
-                            )}
-                            <form>
-                                {previewData ? (
-                                    previewData.map((dt, index) => {
-                                        if (dt.type === "button") {
-                                            return (
-                                                <Button
-                                                    variant="dark"
+            <Container>
+                <div className="col-lg-8 mx-auto poreview-form-holder">
+                    {previewData && (
+                        <div
+                            className="preview-form-title"
+                            dangerouslySetInnerHTML={{ __html: formName }}
+                        ></div>
+                    )}
+                    <form>
+                        {previewData ? (
+                            previewData.map((dt, index) => {
+                                if (dt.type === "button") {
+                                    return (
+                                        <Button
+                                            variant="dark"
+                                            name={dt.name}
+                                            key={dt.id}
+                                            onClick={() => handleNextPreviewSteps(dt.page)}
+                                        >
+                                            {dt.placeholder}
+                                        </Button>
+                                    );
+                                }
+                                if (dt.type === "textarea") {
+                                    return (
+                                        <Form.Group className="mb-3" key={dt.id}>
+                                            <InputGroup>
+                                                <InputGroup.Text>
+                                                    <FontAwesomeIcon
+                                                        icon={["fas", "align-justify"]}
+                                                    />
+                                                </InputGroup.Text>
+                                                <Form.Control
+                                                    as="textarea"
                                                     name={dt.name}
-                                                    key={dt.id}
-                                                    onClick={() => handleNextPreviewSteps(dt.page)}
-                                                >
-                                                    {dt.placeholder}
-                                                </Button>
-                                            );
-                                        }
-                                        if (dt.type === "textarea") {
-                                            return (
-                                                <Form.Group className="mb-3" key={dt.id}>
-                                                    <InputGroup>
-                                                        <InputGroup.Text>
-                                                            <FontAwesomeIcon
-                                                                icon={["fas", "align-justify"]}
-                                                            />
-                                                        </InputGroup.Text>
-                                                        <Form.Control
-                                                            as="textarea"
-                                                            name={dt.name}
-                                                            type={dt.type}
-                                                            rows={3}
-                                                            placeholder={dt.placeholder}
-                                                            id={dt.id}
-                                                            onBlur={(e) =>
-                                                                handlePreviewField(e, index, dt.page)
-                                                            }
+                                                    type={dt.type}
+                                                    rows={3}
+                                                    placeholder={dt.placeholder}
+                                                    id={dt.id}
+                                                    onBlur={(e) =>
+                                                        handlePreviewField(e, index, dt.page)
+                                                    }
+                                                />
+                                            </InputGroup>
+                                        </Form.Group>
+                                    );
+                                } else {
+                                    return (
+                                        <Form.Group className="mb-3" key={dt.id}>
+                                            <InputGroup>
+                                                <InputGroup.Text>
+                                                    {dt.type === "text" ? (
+                                                        <FontAwesomeIcon
+                                                            icon={["fas", "align-left"]}
                                                         />
-                                                    </InputGroup>
-                                                </Form.Group>
-                                            );
-                                        } else {
-                                            return (
-                                                <Form.Group className="mb-3" key={dt.id}>
-                                                    <InputGroup>
-                                                        <InputGroup.Text>
-                                                            {dt.type === "text" ? (
-                                                                <FontAwesomeIcon
-                                                                    icon={["fas", "align-left"]}
-                                                                />
-                                                            ) : dt.type === "number" ? (
-                                                                <FontAwesomeIcon icon={["fas", "phone"]} />
-                                                            ) : (
-                                                                <FontAwesomeIcon icon={["fas", "at"]} />
-                                                            )}
-                                                        </InputGroup.Text>
-                                                        <Form.Control
-                                                            placeholder={dt.placeholder}
-                                                            id={dt.id}
-                                                            name={dt.id}
-                                                            type={dt.type}
-                                                            onBlur={(e) =>
-                                                                handlePreviewField(e, index, dt.page)
-                                                            }
-                                                        />
-                                                    </InputGroup>
-                                                </Form.Group>
-                                            );
-                                        }
-                                    })
-                                ) : (
-                                    <Thankyou />
-                                )}
-                            </form>
-                        </div>
-                    </Container>
-                </Modal.Body>
-            </Modal>
+                                                    ) : dt.type === "number" ? (
+                                                        <FontAwesomeIcon icon={["fas", "phone"]} />
+                                                    ) : (
+                                                        <FontAwesomeIcon icon={["fas", "at"]} />
+                                                    )}
+                                                </InputGroup.Text>
+                                                <Form.Control
+                                                    placeholder={dt.placeholder}
+                                                    id={dt.id}
+                                                    name={dt.id}
+                                                    type={dt.type}
+                                                    onBlur={(e) =>
+                                                        handlePreviewField(e, index, dt.page)
+                                                    }
+                                                />
+                                            </InputGroup>
+                                        </Form.Group>
+                                    );
+                                }
+                            })
+                        ) : (
+                            <Thankyou />
+                        )}
+                    </form>
+                </div>
+            </Container>
         </>
     );
 };

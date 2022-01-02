@@ -289,7 +289,6 @@ function Body() {
           <div className="col-lg-10 offset-md-2">
             <CkEditor setFormName={setFormName}></CkEditor>
           </div>
-
           {showFields()}
         </div>
 
