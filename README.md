@@ -1,4 +1,4 @@
-# Dynamic Form Inspired By Tally.so [dynamicform.com](https://dynamicform-1cc.netlify.app/)
+# Dynamic Form Inspired By Tally.so | [dynamicform.com](https://dynamicform-1cc.netlify.app/)
 
 ## Package Used
 

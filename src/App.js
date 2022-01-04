@@ -20,6 +20,8 @@ function App() {
     localStorage.setItem('user', JSON.stringify({ accessToken: null }))
   }
 
+  // backend heroku path - https://dynamicform-1cc.herokuapp.com/
+
   return (
     <Routes>
       <Route exact path="/" element={<PrivateRoute> <Navigation otherPage /></PrivateRoute>} />
