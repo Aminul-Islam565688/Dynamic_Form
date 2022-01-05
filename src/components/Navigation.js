@@ -3,6 +3,8 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { v4 as uuidv4 } from "uuid";
 import { add_new_page } from '../redux/actions/formFiledsActions';
 import "./Navigation.css";
@@ -23,7 +25,7 @@ function Navigation({ addNewPage, preview, handleUploadOpen, otherPage }) {
   const { id } = useParams();
 
   const fromPublish = () => {
-    axios.post(`http://localhost:7000/form_publish/${id}`, fields, config)
+    axios.post(`${process.env.REACT_APP_SERVER_LINK}/form_publish/${id}`, fields, config)
       .then(res => {
         console.log(res.data.form_link);
         setShareLink(res.data.form_link);
@@ -34,10 +36,11 @@ function Navigation({ addNewPage, preview, handleUploadOpen, otherPage }) {
 
   const ShareLink = () => {
     navigator.clipboard.writeText(shareLink);
-    alert('Text copied');
   }
 
   let navigate = useNavigate();
+
+  const notify = () => toast.success('Shared Link Copied to Clipboard!');
 
   // now it's in x-aminulislam-x repository
 
@@ -79,7 +82,7 @@ function Navigation({ addNewPage, preview, handleUploadOpen, otherPage }) {
                 <span>Publish</span>
               </li>
 
-              <li onClick={ShareLink} >
+              <li onClick={() => { ShareLink(); notify() }} >
                 <FontAwesomeIcon icon={["fas", "share-alt"]} />
                 <span>Share</span>
               </li>
@@ -129,6 +132,16 @@ function Navigation({ addNewPage, preview, handleUploadOpen, otherPage }) {
         </span>
         <FontAwesomeIcon icon={["fas", "user-circle"]} />
       </div>
+      <ToastContainer position="bottom-right"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        theme='colored'
+        pauseOnHover />
     </header >
   );
 }

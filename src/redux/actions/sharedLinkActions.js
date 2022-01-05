@@ -12,7 +12,7 @@ const getSharedFromDataRequest = (data) => {
 
 
 export const getSharedFromData = (id) => dispatch => {
-    axios.get(`http://localhost:7000/form/${id}`)
+    axios.get(`${process.env.REACT_APP_SERVER_LINK}/form/${id}`)
         .then(res => {
             dispatch(getSharedFromDataRequest(res.data));
             console.log(res.data)
