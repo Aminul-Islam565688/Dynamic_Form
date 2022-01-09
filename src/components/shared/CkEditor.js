@@ -1,12 +1,23 @@
-import BlockEditor from "@ckeditor/ckeditor5-build-balloon-block";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
+// import BlockEditor from "@ckeditor/ckeditor5-build-balloon-block";
+import BalloonEditor from '@ckeditor/ckeditor5-build-balloon-block';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
 import React from "react";
 
 const CkEditor = ({ setFormName }) => {
+
+  BalloonEditor
+    .create(document.querySelector('#editor'))
+    .then(editor => {
+      window.editor = editor;
+    })
+    .catch(error => {
+      console.error('There was a problem initializing the editor.', error);
+    });
+
   return (
     <div>
       <CKEditor
-        editor={BlockEditor}
+        editor={BalloonEditor}
         // data="<p>Hello from CKEditor 5!</p>"
         data={`<h2>Add Title</h2>`}
         onReady={(editor) => {

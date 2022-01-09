@@ -12,12 +12,11 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   useParams
 } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
 import { delete_page } from "../redux/actions/formFiledsActions";
 import "./Body.css";
 import Navigation from "./Navigation";
-import CkEditor from "./shared/CkEditor";
 import EditInputFields from "./shared/EditInputFields";
+import Editor from "./shared/Editor";
 import ImagePreview from "./shared/ImagePreview";
 import ModalAdd from "./shared/ModalAdd";
 import Thankyou from "./shared/Thankyou";
@@ -45,7 +44,6 @@ function Body() {
   const { fields, totalPage } = useSelector(state => state.formFields);
 
 
-  console.log(uuidv4(), id)
 
   // Modal Photo Upload states
   const [cover, setCover] = useState("");
@@ -56,7 +54,6 @@ function Body() {
   const handleUploadClose = () => setUploadShow(false);
   const handleUploadOpen = (type) => {
     setUploadShow(true);
-    console.log("Modal", type);
     setUploadType(type);
   };
 
@@ -135,7 +132,6 @@ function Body() {
     if (nextPage) {
       let filteredData = fields.filter((dt) => dt.page === nextPage.page);
       setPreviewData(filteredData);
-      console.log("Button", previewData);
     } else {
       setPreviewData("");
     }
@@ -150,7 +146,6 @@ function Body() {
     const objIndex = oldData.findIndex((dt) => dt.id === id);
     oldData[objIndex].value = e.target.value;
     setPreviewFieldData(oldData);
-    console.log("##### Form Final Value :: ", oldData);
   };
 
 
@@ -173,7 +168,6 @@ function Body() {
   //   setTotalPage(currentPage);
   // };
 
-  console.log(fields)
 
   // Page Remove functionality
   // const removePage = (pageNumber) => {
@@ -288,7 +282,8 @@ function Body() {
         <div className="col-lg-8 mx-auto">
           {/* Form Title */}
           <div className="col-lg-10 offset-md-2">
-            <CkEditor setFormName={setFormName}></CkEditor>
+            {/* <CkEditor setFormName={setFormName}></CkEditor> */}
+            <Editor />
           </div>
           {showFields()}
         </div>

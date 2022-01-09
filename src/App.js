@@ -22,7 +22,6 @@ function App() {
 
   // backend heroku path - https://dynamicform-1cc.herokuapp.com/
 
-  console.log(process.env.REACT_APP_SERVER_LINK);
   return (
     <Routes>
       <Route exact path="/" element={<PrivateRoute> <Navigation otherPage /></PrivateRoute>} />

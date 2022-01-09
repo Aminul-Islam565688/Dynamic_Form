@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@ckeditor/ckeditor5-build-balloon-block": "^30.0.0",
+    "@ckeditor/ckeditor5-build-classic": "^31.1.0",
     "@ckeditor/ckeditor5-react": "^3.0.3",
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-brands-svg-icons": "^5.15.4",
