@@ -15,8 +15,8 @@ import {
 import { delete_page } from "../redux/actions/formFiledsActions";
 import "./Body.css";
 import Navigation from "./Navigation";
+import CkEditor from "./shared/CkEditor";
 import EditInputFields from "./shared/EditInputFields";
-import Editor from "./shared/Editor";
 import ImagePreview from "./shared/ImagePreview";
 import ModalAdd from "./shared/ModalAdd";
 import Thankyou from "./shared/Thankyou";
@@ -282,8 +282,7 @@ function Body() {
         <div className="col-lg-8 mx-auto">
           {/* Form Title */}
           <div className="col-lg-10 offset-md-2">
-            {/* <CkEditor setFormName={setFormName}></CkEditor> */}
-            <Editor />
+            <CkEditor setFormName={setFormName}></CkEditor>
           </div>
           {showFields()}
         </div>

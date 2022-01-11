@@ -3,13 +3,13 @@ import { fab } from "@fortawesome/free-brands-svg-icons";
 import { far } from "@fortawesome/free-regular-svg-icons";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { Route, Routes } from "react-router-dom";
+import './App.css';
 import Login from "./components/auth/Login";
 import PrivateRoute from "./components/auth/PrivateRoute/PrivateRoute";
 import Body from './components/Body';
 import DragAndDrop from "./components/DragAndDrop/DragAndDrop";
 import Navigation from "./components/Navigation";
 import SharedLink from "./components/pages/SharedLink/SharedLink";
-
 
 library.add(fab, fas, far);
 
