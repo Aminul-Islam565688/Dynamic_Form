@@ -23,13 +23,15 @@ function App() {
   // backend heroku path - https://dynamicform-1cc.herokuapp.com/
 
   return (
-    <Routes>
-      <Route exact path="/" element={<PrivateRoute> <Navigation otherPage /></PrivateRoute>} />
-      <Route path="/form/:id" element={<PrivateRoute> <Body /></PrivateRoute>} />
-      <Route path="/drag-and-drop" element={<PrivateRoute><DragAndDrop /></PrivateRoute>} />
-      <Route path="/f/:id" element={<SharedLink />} />
-      <Route path="/login" element={<Login />} />
-    </Routes>
+    <>
+      <Routes>
+        <Route exact path="/" element={<PrivateRoute> <Navigation otherPage /></PrivateRoute>} />
+        <Route path="/form/:id" element={<PrivateRoute> <Body /></PrivateRoute>} />
+        <Route path="/drag-and-drop" element={<PrivateRoute><DragAndDrop /></PrivateRoute>} />
+        <Route path="/f/:id" element={<SharedLink />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
+    </>
   );
 }
 

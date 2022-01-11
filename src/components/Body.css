@@ -7,6 +7,11 @@ h5,
 h6 {
   margin: 0;
 }
+
+.body-main-div {
+  /* background-color: #555; */
+}
+
 .form-title {
   width: 100%;
   font-size: 28px;
@@ -25,7 +30,7 @@ h6 {
   transition: 500ms;
   opacity: 0;
 }
-.single-input-area:hover .action-buttons{
+.single-input-area:hover .action-buttons {
   opacity: 1;
 }
 .input-area > div {

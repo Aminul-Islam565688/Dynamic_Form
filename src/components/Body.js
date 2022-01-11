@@ -279,7 +279,7 @@ function Body() {
         handleUploadOpen={handleUploadOpen}
       />
       <Container>
-        <div className="col-lg-8 mx-auto">
+        <div className="col-lg-8 mx-auto body-main-div">
           {/* Form Title */}
           <div className="col-lg-10 offset-md-2">
             <CkEditor setFormName={setFormName}></CkEditor>
