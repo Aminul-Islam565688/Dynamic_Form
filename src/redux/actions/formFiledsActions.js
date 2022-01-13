@@ -3,6 +3,17 @@ export const DELETE_PAGE = 'DELETE_PAGE';
 export const DELETE_FIELD_ITEM = 'DELETE_FIELD_ITEM';
 export const UPDATE_PLACEHOLDER = 'UPDATE_PLACEHOLDER';
 export const ADD_INPUT_FIELDS = 'ADD_INPUT_FIELDS';
+export const ADD_TITLE = 'ADD_TITLE';
+
+
+
+
+export const add_title = (payload) => {
+    return {
+        type: ADD_TITLE,
+        payload
+    }
+}
 
 export const add_new_page = () => {
     return {

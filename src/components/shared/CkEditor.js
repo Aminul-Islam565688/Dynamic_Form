@@ -1,8 +1,16 @@
 import BlockEditor from "@ckeditor/ckeditor5-build-balloon-block";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { add_title } from "../../redux/actions/formFiledsActions";
 
-const CkEditor = ({ setFormName }) => {
+const CkEditor = (props) => {
+
+  const { setFormName } = props;
+
+  const dispatch = useDispatch();
+
+  console.log(props)
 
   const [formTitle, setFormTitle] = useState('Add Title')
 
@@ -18,7 +26,7 @@ const CkEditor = ({ setFormName }) => {
         }}
         onChange={(event, editor) => {
           const data = editor.getData();
-          setFormName(data);
+          dispatch(add_title(data));
           console.log("changing", { event, editor, data });
         }}
         onBlur={(event, editor) => {

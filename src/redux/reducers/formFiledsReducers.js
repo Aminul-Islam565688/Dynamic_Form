@@ -1,8 +1,9 @@
 import { v4 as uuidv4 } from "uuid";
-import { ADD_INPUT_FIELDS, ADD_NEW_PAGE, DELETE_FIELD_ITEM, DELETE_PAGE, UPDATE_PLACEHOLDER } from "../actions/formFiledsActions";
+import { ADD_INPUT_FIELDS, ADD_NEW_PAGE, ADD_TITLE, DELETE_FIELD_ITEM, DELETE_PAGE, UPDATE_PLACEHOLDER } from "../actions/formFiledsActions";
 import { SHARED_FORM_DATA } from "../actions/sharedLinkActions";
 
 const initialState = {
+    formName: 'Add Title',
     fields: [
         {
             id: uuidv4(),
@@ -17,9 +18,16 @@ const initialState = {
 
 const formFiledReducers = (state = initialState, { type, payload }) => {
 
-    const { fields, totalPage } = state
+    const { fields, totalPage } = state;
 
     switch (type) {
+        // to add title
+        case ADD_TITLE:
+            console.log(payload)
+            return {
+                ...state,
+                formName: payload,
+            }
         // TO CREATE NEW PAGE
         case ADD_NEW_PAGE:
             let oldFields = [...fields];
@@ -91,8 +99,9 @@ const formFiledReducers = (state = initialState, { type, payload }) => {
             console.log(payload)
             return {
                 ...state,
-                fields: payload,
-                totalPage
+                formName: payload.formName,
+                fields: payload.fields,
+                totalPage: payload.totalPage
             }
         default: return state;
     }

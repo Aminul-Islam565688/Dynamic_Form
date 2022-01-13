@@ -13,7 +13,7 @@ function Navigation({ addNewPage, preview, handleUploadOpen, otherPage }) {
   const [formId, setFormId] = useState(uuidv4);
   const [shareLink, setShareLink] = useState('');
 
-  const { fields } = useSelector(state => state.formFields);
+  const formFields = useSelector(state => state.formFields);
   const dispatch = useDispatch();
 
   const config = {
@@ -25,7 +25,7 @@ function Navigation({ addNewPage, preview, handleUploadOpen, otherPage }) {
   const { id } = useParams();
 
   const fromPublish = () => {
-    axios.post(`${process.env.REACT_APP_SERVER_LINK}/form_publish/${id}`, fields, config)
+    axios.post(`${process.env.REACT_APP_SERVER_LINK}/form_publish/${id}`, formFields, config)
       .then(res => {
         console.log(res.data.form_link);
         setShareLink(res.data.form_link);

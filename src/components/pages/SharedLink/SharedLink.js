@@ -8,14 +8,13 @@ import Thankyou from "../../shared/Thankyou";
 
 
 
-const SharedLink = () => {
+const SharedLink = (props) => {
 
-    const [formName, setFormName] = useState("ajk tor ekdin k amer ekdin");
+
 
     const { id } = useParams();
     const dispatch = useDispatch()
-    const { fields } = useSelector(state => state.formFields);
-    console.log(fields)
+    const { fields, formName, totalPage } = useSelector(state => state.formFields);
 
     useEffect(() => {
         dispatch(getSharedFromData(id));

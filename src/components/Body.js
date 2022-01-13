@@ -26,7 +26,7 @@ import UploadModal from "./shared/UploadModal";
 
 function Body() {
   //console.log(uuidv4());
-  const [formName, setFormName] = useState("Add Title");
+  // const [formName, setFormName] = useState("Add Title");
   // const [fields, setFields] = useState([
   //   {
   //     id: uuidv4(),
@@ -41,8 +41,8 @@ function Body() {
 
   const dispatch = useDispatch();
 
-  const { fields, totalPage } = useSelector(state => state.formFields);
-
+  const { fields, totalPage, formName } = useSelector(state => state.formFields);
+  console.log(fields, formName);
 
 
   // Modal Photo Upload states
@@ -282,7 +282,7 @@ function Body() {
         <div className="col-lg-8 mx-auto body-main-div">
           {/* Form Title */}
           <div className="col-lg-10 offset-md-2">
-            <CkEditor setFormName={setFormName}></CkEditor>
+            <CkEditor></CkEditor>
           </div>
           {showFields()}
         </div>
