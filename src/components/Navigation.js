@@ -24,13 +24,38 @@ function Navigation({ addNewPage, preview, handleUploadOpen, otherPage }) {
 
   const { id } = useParams();
 
+  let navigate = useNavigate();
+
+  const toastifyDesign = {
+    position: "bottom-right",
+    autoClose: 5000,
+    hideProgressBar: true,
+    newestOnTop: false,
+    closeOnClick: true,
+    rtl: false,
+    pauseOnFocusLoss: true,
+    draggable: true,
+    theme: 'colored',
+    pauseOnHover: true
+  }
+
+
   const fromPublish = () => {
+    const id = toast.loading("Please wait...", toastifyDesign)
     axios.post(`${process.env.REACT_APP_SERVER_LINK}/form_publish/${id}`, formFields, config)
       .then(res => {
         console.log(res.data.form_link);
         setShareLink(res.data.form_link);
+        toast.update(id, {
+          render: "Success! Now you can share link", type: "success", isLoading: false, toastifyDesign
+        });
       })
-      .catch(err => console.log(err))
+      .catch(err => {
+        console.log(err)
+        toast.update(id, {
+          render: "Try Again", type: "error", isLoading: false, toastifyDesign
+        });
+      })
   }
 
 
@@ -38,16 +63,15 @@ function Navigation({ addNewPage, preview, handleUploadOpen, otherPage }) {
     navigator.clipboard.writeText(shareLink);
   }
 
-  let navigate = useNavigate();
-
-  const notify = () => toast.success('Shared Link Copied to Clipboard!');
+  const notify = () => toast.success('Shared Link Copied to Clipboard!', toastifyDesign);
 
   // now it's in x-aminulislam-x repository
 
   return (
     <>
       <header className="header-area container-fluid">
-        <div className="header-left">Automo</div>
+        <div className="header-left" onClick={() => navigate('/')}>Automo</div>
+
 
         <div className="header-middle">
           <ul>
@@ -95,32 +119,24 @@ function Navigation({ addNewPage, preview, handleUploadOpen, otherPage }) {
               </>
             ) : (
               <>
-                <li>
-                  <Link to={`/form/${formId}`}>
-                    <FontAwesomeIcon icon={["fas", "plus"]} />
-                    <span>Create Form</span>
-                  </Link>
+                <li onClick={() => navigate(`/form/${formId}`)}>
+                  <FontAwesomeIcon icon={["fas", "plus"]} />
+                  <span>Create Form</span>
                 </li>
 
-                <li>
-                  <Link to="/drag-and-drop">
-                    <FontAwesomeIcon icon={["fas", "grip-vertical"]} />
-                    <span>Drag and Drop</span>
-                  </Link>
+                <li onClick={() => navigate(`/drag-and-drop`)}>
+                  <FontAwesomeIcon icon={["fas", "grip-vertical"]} />
+                  <span>Drag and Drop</span>
                 </li>
 
-                <li>
-                  <Link to="/login">
-                    <FontAwesomeIcon icon={["fas", "lock"]} />
-                    <span>Login</span>
-                  </Link>
+                <li onClick={() => navigate(`/login`)}>
+                  <FontAwesomeIcon icon={["fas", "lock"]} />
+                  <span>Login</span>
                 </li>
 
-                <li>
-                  <Link to="/registration">
-                    <FontAwesomeIcon icon={["far", "clipboard"]} />
-                    <span>Sign up</span>
-                  </Link>
+                <li onClick={() => navigate(`/registration`)}>
+                  <FontAwesomeIcon icon={["far", "clipboard"]} />
+                  <span>Sign up</span>
                 </li>
               </>
             )}
@@ -134,16 +150,7 @@ function Navigation({ addNewPage, preview, handleUploadOpen, otherPage }) {
           <FontAwesomeIcon icon={["fas", "user-circle"]} />
         </div>
       </header >
-      <ToastContainer position="bottom-right"
-        autoClose={5000}
-        hideProgressBar
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        theme='colored'
-        pauseOnHover />
+      <ToastContainer />
     </>
   );
 }
